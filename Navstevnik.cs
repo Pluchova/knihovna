@@ -8,40 +8,33 @@ namespace knihovna
 {
     internal class Navstevnik
     {
-        public string Jmeno;
-        public string Prijmeni;
-        public int IdentifikacniCislo;
-        public Kniha[] PoleZapujcenychKnih;
+        
+            public string Jmeno;
+            public string Prijmeni;
+            public int IdentifikacniCislo;
+            public Kniha[] PoleZapujcenychKnih;
 
-        public void VypujcKnihu(Kniha kniha)
-        {
-            for (int i = 0; i < PoleZapujcenychKnih.Length; i++)
+            public Navstevnik(string jmeno, string prijmeni, int identifikacniCislo)
             {
-                if (PoleZapujcenychKnih[i] == null)
+                Jmeno = jmeno;
+                Prijmeni = prijmeni;
+                IdentifikacniCislo = identifikacniCislo;
+                PoleZapujcenychKnih = new Kniha[3]; // Předpokládáme, že návštěvník může mít maximálně 3 knihy zapůjčené najednou.
+            }
+        public void VypisVypujceneKnihy()
+        {
+            Console.WriteLine($"Vypůjčené knihy pro {Jmeno} {Prijmeni}:");
+            foreach (Kniha kniha in PoleZapujcenychKnih)
+            {
+                if (kniha != null)
                 {
-                    PoleZapujcenychKnih[i] = kniha;
-                    kniha.JeVypujcena = true;
-                    Console.WriteLine($"Půjčil sis knihu {kniha.Nazev}");
-                    return;
+                    Console.WriteLine($"- {kniha.Nazev}, rok vydání: {kniha.RokVydani}");
                 }
             }
-            Console.WriteLine("Máte maximální počet knih, které si můžete půjčit najednou");
-
-        }
-        public void NavratKnihu(Kniha kniha)
-        {
-            for(int i = 0; i < PoleZapujcenychKnih.Length; i++)
-            {
-                if (PoleZapujcenychKnih[i] == kniha)
-                {
-                    PoleZapujcenychKnih[i] = null;
-                    kniha.JeVypujcena = false;
-                    Console.WriteLine("Kniha vrácena úspěšně.");
-                    return;
-                }
-            }
-            Console.WriteLine("Tato kniha není v seznamu vašich zapůjčených knih.");
         }
     }
-    
 }
+        
+    
+
+        

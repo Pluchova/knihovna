@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace knihovna
 {
-    internal class Kniha
+    public class Kniha
     {
         public string Nazev;
-        public string Autor;
+        public Autor Autor;
         public int RokVydani;
         public bool JeVypujcena;
+
+        public Kniha(string nazev, Autor autor,int rokVydani, bool jeVypujcena)
+        {
+            Nazev = nazev;
+            Autor = autor;
+            RokVydani = rokVydani;
+            JeVypujcena = jeVypujcena;
+        }
     }
 }
